@@ -41,4 +41,13 @@ def print_dict(dict):
 
 # print_dict(food_dict)
         
-        
+def optimal_protein(data):
+    foods_optimal = {}
+    for meal,macroses in data.items():
+        if macroses['protein'] and macroses['calories']:
+            if float(macroses['protein'])*20>int(macroses['calories']):
+                foods_optimal[meal] = food_dict[meal]
+                
+    # print_dict(foods_optimal)
+
+optimal_protein(food_dict)       
