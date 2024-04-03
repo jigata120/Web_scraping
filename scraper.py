@@ -72,3 +72,13 @@ def generate_html_table(food_dict):
     html_content += f'</table>\n<script>{js}</script>\n</body></html>'
     
     return html_content
+
+
+def get_the_js(filename):
+    try:
+        with open(filename, 'r') as file:
+            file_text = file.read()
+            return file_text
+    except FileNotFoundError:
+        print("The file '{}' does not exist.".format(filename))
+    
