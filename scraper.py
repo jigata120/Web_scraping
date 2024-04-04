@@ -81,4 +81,14 @@ def get_the_js(filename):
             return file_text
     except FileNotFoundError:
         print("The file '{}' does not exist.".format(filename))
-    
+
+def save_html_file(html_content, filename):
+    with open(filename, 'w',encoding='utf-8') as file:
+        file.write(html_content)
+
+#save the html content to a file
+html_table = generate_html_table(food_dict)
+# print(html_table)
+save_html_file(html_table, 'index.html')
+
+
