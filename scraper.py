@@ -96,3 +96,14 @@ import http.server
 import socketserver
 
 PORT = 8090
+
+def print_link(message, url):
+    print(f"\033]8;;{url}\033\\{message}\033]8;;\033\\")
+
+# link for usage(change the port each time):
+print_link("Click here to visit the website", f"http://localhost:{PORT}/food_data.html")
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("Serving at port", PORT)
+    httpd.serve_forever()
