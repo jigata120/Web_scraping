@@ -91,4 +91,8 @@ html_table = generate_html_table(food_dict)
 # print(html_table)
 save_html_file(html_table, 'index.html')
 
+#start a simple http server
+import http.server
+import socketserver
 
+PORT = 8090
