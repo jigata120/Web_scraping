@@ -1,10 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-url = 'https://calorienbalans.com/FoodInfo'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
-        AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-}
+
 def parse_food_data(html):
     soup = BeautifulSoup(html, 'html.parser')
     food_data = {}
@@ -27,6 +23,11 @@ def parse_food_data(html):
 
     return food_data
 
+url = 'https://calorienbalans.com/FoodInfo'
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+        AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+}
 
 response = requests.get(url, headers=headers)
 html_content = response.content
@@ -40,7 +41,8 @@ def print_dict(dict):
                   calories /{macroses['calories']}/")
 
 # print_dict(food_dict)
-        
+
+
 def optimal_protein(data):
     foods_optimal = {}
     for meal,macroses in data.items():
@@ -50,7 +52,7 @@ def optimal_protein(data):
                 
     # print_dict(foods_optimal)
 
-optimal_protein(food_dict)  
+optimal_protein(food_dict)
 
 
 def generate_html_table(food_dict):
@@ -73,7 +75,6 @@ def generate_html_table(food_dict):
     
     return html_content
 
-
 def get_the_js(filename):
     try:
         with open(filename, 'r') as file:
@@ -81,6 +82,9 @@ def get_the_js(filename):
             return file_text
     except FileNotFoundError:
         print("The file '{}' does not exist.".format(filename))
+    
+print()
+
 
 def save_html_file(html_content, filename):
     with open(filename, 'w',encoding='utf-8') as file:
@@ -95,13 +99,13 @@ save_html_file(html_table, 'index.html')
 import http.server
 import socketserver
 
-PORT = 8090
+PORT = 8070
 
 def print_link(message, url):
     print(f"\033]8;;{url}\033\\{message}\033]8;;\033\\")
 
 # link for usage(change the port each time):
-print_link("Click here to visit the website", f"http://localhost:{PORT}/food_data.html")
+print_link("Click here to visit the website", f"http://localhost:{PORT}/index.html")
 Handler = http.server.SimpleHTTPRequestHandler
 
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
