@@ -98,7 +98,7 @@ save_html_file(html_table, 'index.html')
 #start a simple http server
 import http.server
 import socketserver
-
+#change the port each time 
 PORT = 8070
 
 def print_link(message, url):
